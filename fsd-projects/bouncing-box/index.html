@@ -70,7 +70,7 @@
 
         // TODO 2 - Variable declarations
           var positionX = 0;
-
+         
 
 
 
@@ -80,7 +80,8 @@
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-
+      variableName = variableName + 10; // Adds 10 to variableName
+          
         
 
           
@@ -96,8 +97,11 @@
         function handleBoxClick() {
           moveBoxTo(200); // Moves box to x-position 200
           moveBoxTo(boardWidth); // Moves box to right edge
-          variableName = variableName + 10; // Adds 10 to variableName
-
+          PositionX = PositionX + 10; // Adds 10 to variableName
+          positionX = 0;
+          points = 0;
+          changeBoxText(points);
+         points = points + 1; // Adds 1 to variableName
         }
 
 
