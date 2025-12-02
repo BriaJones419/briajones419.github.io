@@ -15,101 +15,147 @@
         display: block;
         position: absolute;
         top: 100px;
-        /* Change me! */
         left: 0px;
       }
 
       .board {
         height: 100vh;
+        background-image: url("https://img.freepik.com/free-vector/watercolor-soft-earth-tones-background_23-2151155668.jpg?semt=ais_hybrid&w=740&q=80&quot;);
+        background-color: #0854eb;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .game-over {
+        display: none;
+        color: red;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 10px;
       }
     </style>
-    <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
   </head>
 
   <body class="board">
-    <!-- HTML for the box -->
     <div class="box">?</div>
+    <div class="misclick-counter">Misses: 0</div>
+    <div class="game-over">Too many misclicks - GAME OVER</div>
+    <h1> "Bria's Bouncing Box" </h1>
 
     <script>
       (function () {
         "use strict";
-        /* global jQuery */
+        var gameOverMessage = jQuery(".game-over");
 
-        //////////////////////////////////////////////////////////////////
-        /////////////////// SETUP DO NOT DELETE //////////////////////////
-        //////////////////////////////////////////////////////////////////
+        var box = jQuery(".box");
+        var board = jQuery(".board");
+        var boardWidth = board.width();
+        var counter = jQuery(".misclick-counter");
 
-        var box = jQuery(".box"); // reference to the HTML .box element
-        var board = jQuery(".board"); // reference to the HTML .board element
-        var boardWidth = board.width(); // the maximum X-Coordinate of the screen
-
-        // update the boardWidth variable when the window is resized
         jQuery(window).on("resize", function () {
           boardWidth = board.width();
         });
 
-        // Every 50 milliseconds, call the update Function (see below)
-        setInterval(update, 50);
+        var interval = setInterval(update, 50);
 
-        // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
+        board.on("click", handleBoardClick);
 
-        // moves the Box to a new position on the screen along the X-Axis
-        function moveBoxTo(newPositionX) {
+        var colorStr = "rgb(210, 180, 140)";
+        box.css("background-color", colorStr);
+
+        function moveBoxTo(newPositionX, newPositionY) {
           box.css("left", newPositionX);
+          box.css("top", newPositionY);
         }
 
-        // changes the text displayed on the Box
         function changeBoxText(newText) {
           box.text(newText);
         }
 
-        //////////////////////////////////////////////////////////////////
-        /////////////////// YOUR CODE BELOW HERE /////////////////////////
-        //////////////////////////////////////////////////////////////////
+        function getRandomColor() {
+          var r = Math.random() * 255;
+          var g = Math.random() * 255;
+          var b = Math.random() * 255;
+          return "rgb(" + r + ", " + g + ", " + b + ")";
+        }
 
-        // TODO 2 - Variable declarations
-          var positionX = 0;
-          var points = 0;
-          var speed = 10;
+        function endGame() {
+          clearInterval(interval);
+        }
 
-         
+        var positionX = 0;
+        var points = 0;
+        var speed = 10;
+        var positionY = 0;
+        var speedY = 10;
+        var boardHeight = jQuery(window).height();
+        var randNum = Math.random() * 100;
+        var misClicks = 0;
+        var gameOver = false;
 
-
-
-        /**
-         * This Function will be called 20 times/second.
-         * Each time it is called, it should move the Box to a new location.
-         * If the box drifts off the screen, turn it around!
-         */
         function update() {
-        positionX += speed; // Increases variableName by 10
-          
-        
+          if (gameOver) return;
 
-          
+          positionX += speed;
+          positionY += speedY;
+
+          moveBoxTo(positionX, positionY);
+
+          if (positionX < 0) {
+            speed = -speed;
+          } else if (positionX > boardWidth - box.width()) {
+            speed = -speed;
+          }
+
+          if (positionY < 0) {
+            speedY = -speedY;
+          } else if (positionY > boardHeight - box.height()) {
+            speedY = -speedY;
+          }
         }
 
-        /**
-         * This Function will be called each time the box is clicked.
-         * Each time it is called, it should perform each of the following actions:
-         * - increase the points total
-         * - increase the speed
-         * - move the box to the left side of the screen.
-         */
-        function handleBoxClick() {
-          moveBoxTo(200); // Moves box to x-position 200
-          moveBoxTo(positionX); // Moves box to right edge
-          PositionX = PositionX + 10; // Adds 10 to variableName
+        function handleBoxClick(event) {
+          if (gameOver) return;
+
           positionX = 0;
-          points = 0;
           changeBoxText(points);
-         points++; // Adds 1 to variableName
-         speed += 3; // Another way to add 3 to variableName
+          points++;
+          box.css("background-color", getRandomColor());
+
+          if (points % 3 === 0) {
+            box.css("background-color", getRandomColor());
+            speed = speed + 2;
+          }
+
+          misClicks = 0;
+          updatemisClicks();
+          event.stopPropagation();
         }
 
+        function handleBoardClick() {
+          if (gameOver) return;
 
-        
+          misClicks++;
+          updatemisClicks();
+
+          if (misClicks >= 10) {
+            triggerGameOver();
+          }
+        }
+
+        function updatemisClicks() {
+          counter.text("Misses: " + misClicks);
+        }
+
+        function triggerGameOver() {
+          gameOver = true;
+          gameOverMessage.fadeIn(500);
+          speed = 0;
+          speedY = 0;
+          box.off("click");
+          board.off("click");
+        }
       })();
     </script>
   </body>
