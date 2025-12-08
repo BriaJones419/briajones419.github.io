@@ -34,7 +34,7 @@ $(function () {
 createPlatform(500, 0, 20, 290);
 createPlatform(1350, 400, 50, 50, "red");
     createPlatform(500, 0, 30, 250);
-createPlatform(1350, 400, 50, 50, "lightPink");
+createPlatform(	255, 182, 193 "lightPink");
     createPlatform(500, 0, 40, 300);
 createPlatform(1350, 400, 50, 50, "yellow");
     createPlatform(500, 0, 50, 330);
@@ -50,11 +50,11 @@ createPlatform(1350, 400, 50, 50, "orange");
 createCollectable("steve", 300, 50);
 createCollectable("diamond", 200, 170, 0.5, 0.7);
 createCollectable("kennedi", 500, 50);
-createCollectable("diamond", 200, 170, 0.5, 0.7);
+createCollectable("diamond", 200, 190, 0.5, 0.7);
 createCollectable("grace", 800, 50);
-createCollectable("diamond", 200, 170, 0.5, 0.7);
+createCollectable("diamond", 200, 150, 0.5, 0.7);
 createCollectable("max", 1050, 50);
-createCollectable("diamond", 200, 170, 0.5, 0.7);
+createCollectable("diamond", 200, 130, 0.5, 0.7);
 
     
     // TODO 4 - Create Cannons
