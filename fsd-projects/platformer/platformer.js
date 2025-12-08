@@ -47,12 +47,21 @@ createPlatform(1350, 400, 50, 50, "orange");
 
 
     // TODO 3 - Create Collectables
-
-
+createCollectable("steve", 300, 50);
+createCollectable("diamond", 200, 170, 0.5, 0.7);
+createCollectable("kennedi", 500, 50);
+createCollectable("diamond", 200, 170, 0.5, 0.7);
+createCollectable("grace", 800, 50);
+createCollectable("diamond", 200, 170, 0.5, 0.7);
+createCollectable("max", 1050, 50);
+createCollectable("diamond", 200, 170, 0.5, 0.7);
 
     
     // TODO 4 - Create Cannons
-
+createCannon("top", 200, 100);
+createCannon("right", 300, 2000);
+    createCannon("bottom", 400, 200);
+createCannon("left", 300, 1050);
 
     
     
