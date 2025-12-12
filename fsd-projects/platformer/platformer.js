@@ -31,24 +31,12 @@ $(function () {
 
 
     // TODO 2 - Create Platforms
-createPlatform(500, 0, 20, 290);
-createPlatform(1350, 400, 50, 50, "red");
-    createPlatform(500, 0, 30, 250);
-createPlatform(	255, 182, 193 "lightPink");
-    createPlatform(500, 0, 40, 300);
-createPlatform(1350, 400, 50, 50, "yellow");
-    createPlatform(500, 0, 50, 330);
-createPlatform(1350, 400, 50, 50, "blue");
-    createPlatform(500, 0, 60, 500);
-createPlatform(1350, 400, 50, 50, "lightGreen");
-    createPlatform(500, 0, 70, 420);
-createPlatform(1350, 400, 50, 50, "orange");
-
-      createPlatform(100, 650, 200, 50, "red");
-      createPlatform(400, 450, 100, 50, "lightPink");
-      createPlatform(300, 550, 150, 50, "blue");
-      createPlatform(500, 350, 250, 50, "lightGreen");
-      createPlatform(300, 300, 100, 50, "orange", 300, 500, 1);
+      createPlatform(100, 500, 200, 50, "red");
+      createPlatform(400, 450, 300, 20, "lightPink", 300, 500, 1);
+      createPlatform(250, 350, 150, 50, "yellow");
+      createPlatform(50, 250, 250, 50, "blue");
+      createPlatform(500, 150, 150, 50, "lightGreen");
+      createPlatform(350, 50, 50, 50, "orange");
 
 
     // TODO 3 - Create Collectables
